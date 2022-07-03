@@ -12,45 +12,34 @@ package inflearn.array;
  * OUT : 첫째 줄에 입력에서 주어진 채점 결과에 대하여 가산점을 고려한 총 점수를 출력한다.
  */
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CalculateScore {
-    public ArrayList<String> mySolution(String[] arr) {
-        ArrayList<String> sList = new ArrayList<>();
+    public int mySolution(int[] iArr) {
+        int sum = 0, addScore = 0;
 
-        for (String s : arr) {
-            StringBuffer sb = new StringBuffer();
-            int reverseNum = Integer.parseInt(sb.append(s).reverse().toString());
-
-            boolean isPrimeNum = true;
-
-            for (int i = 2; i < reverseNum; i++) {
-                if (reverseNum % i == 0) {
-                    isPrimeNum = false;
-                }
-            }
-
-            if (isPrimeNum && reverseNum != 1) {
-                sList.add(String.valueOf(reverseNum));
+        for (int score : iArr) {
+            if (score == 1) {
+                ++addScore;
+                sum += addScore;
+            } else if (score == 0) {
+                addScore = 0;
             }
         }
 
-        return sList;
+        return sum;
     }
 
     public static void main(String[] args) {
         CalculateScore T = new CalculateScore();
         Scanner kb = new Scanner(System.in);
         int n = kb.nextInt();
-        String[] arr = new String[n];
+        int[] arr = new int[n];
 
         for (int i = 0; i < n; i++) {
-            arr[i] = kb.next();
+            arr[i] = kb.nextInt();
         }
 
-        for (String str : T.mySolution(arr)) {
-            System.out.print(str + " ");
-        }
+        System.out.print(T.mySolution(arr));
     }
 }
