@@ -10,10 +10,39 @@ package inflearn.efficiency;
  * OUT : 오름차순으로 정렬된 배열을 출력합니다.
  */
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class MergeTwoArray {
+
+    // two pointer 적용용
+   public ArrayList<Integer> solution(int n, int[] arr1, int m, int[] arr2) {
+        ArrayList<Integer> iList = new ArrayList<>();
+        int p1 = 0, p2 = 0;
+
+        while (p1 < n && p2 < m) {
+            if (arr1[p1] > arr2[p2]) {
+                iList.add(arr2[p2++]);
+            } else if (arr1[p1] < arr2[p2]) {
+                iList.add(arr1[p1++]);
+            } else {
+                iList.add(arr1[p1++]);
+                iList.add(arr2[p2++]);
+            }
+        }
+
+        while (p1 < n) {
+            iList.add(arr1[p1++]);
+        }
+
+        while (p2 < m) {
+            iList.add(arr2[p2++]);
+        }
+
+        return iList;
+    }
+
     public int[] mySolution(int n, int[] arr1, int m, int[] arr2) {
         int[] answer = new int[n + m];
 
@@ -45,7 +74,7 @@ public class MergeTwoArray {
             arr2[i] = kb.nextInt();
         }
 
-        for (int num : T.mySolution(n, arr1, m, arr2)) {
+        for (int num : T.solution(n, arr1, m, arr2)) {
             System.out.print(num + " ");
         }
     }
