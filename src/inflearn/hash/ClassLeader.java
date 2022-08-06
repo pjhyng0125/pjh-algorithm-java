@@ -22,12 +22,13 @@ public class ClassLeader {
         Map<Character, Integer> map = new HashMap<>();
 
         for (char c : str.toCharArray()) {
-            Integer i = map.get(c);
-            if (i == null) {
-                map.put(c, 1);
-            } else {
-                map.put(c, ++i);
-            }
+//            Integer i = map.get(c);
+//            if (i == null) {
+//                map.put(c, 1);
+//            } else {
+//                map.put(c, ++i);
+//            }
+            map.put(c, map.getOrDefault(c, 0) + 1);
         }
 
         for (Character c : map.keySet()) {
